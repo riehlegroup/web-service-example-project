@@ -1,0 +1,16 @@
+
+sudo: required
+
+services:
+  - docker
+
+language: java
+jdk:
+  - oraclejdk8
+
+script:
+  - docker/build
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker pull hannesd/amos-web-service-base-image:1.0
+  - docker build -t hannesd/hannes-web-service:1.0 docker/
+  - docker push hannesd/hannes-web-service:1.0
