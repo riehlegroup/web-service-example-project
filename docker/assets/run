@@ -20,7 +20,7 @@ set -ue
 # setuser: Never run as root!
 # authbind: Allows non-root processes to bind to privileged ports (80)
 
-exec /sbin/setuser nginx \
+exec /sbin/setuser www-data \
   authbind --deep \
     java -jar /usr/share/java/jetty-runner.jar \
     --port 80 \
