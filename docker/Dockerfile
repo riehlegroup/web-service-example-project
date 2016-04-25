@@ -15,16 +15,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM hannesd/amos-web-service-base-image:1.0
+FROM osrgroup/amos-web-service-base-image:1.0
 
-RUN apt-get update -y \
-  && apt-get install -y authbind \
-  && scrub_image
+ENV JETTY_RUNNER_VERSION 9.3.8.v20160314
+ENV MAVEN_DOWNLOAD_URL http://search.maven.org/remotecontent?filepath=
 
-ENV JETTY_VERSION 9.3.8.v20160314
 RUN mkdir -p /usr/share/java \
-  && wget "http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.3.8.v20160314/jetty-runner-${JETTY_VERSION}.jar" -O /usr/share/java/jetty-runner-${JETTY_VERSION}.jar \
-  && ln -s /usr/share/java/jetty-runner-${JETTY_VERSION}.jar /usr/share/java/jetty-runner.jar
+  && wget "${MAVEN_DOWNLOAD_URL}org/eclipse/jetty/jetty-runner/${JETTY_RUNNER_VERSION}/jetty-runner-${JETTY_RUNNER_VERSION}.jar" \
+        -O /usr/share/java/jetty-runner-${JETTY_RUNNER_VERSION}.jar \
+  && ln -s /usr/share/java/jetty-runner-${JETTY_RUNNER_VERSION}.jar /usr/share/java/jetty-runner.jar
 
 ADD assets/ /web-service-assets
 

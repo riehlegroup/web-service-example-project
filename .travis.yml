@@ -9,8 +9,9 @@ jdk:
   - oraclejdk8
 
 script:
+  # Build .war file and build docker image
   - docker/build
+
+  # Log in to Docker Hub and push the image we've just build
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker pull hannesd/amos-web-service-base-image:1.0
-  - docker build -t hannesd/hannes-web-service:1.0 docker/
-  - docker push hannesd/hannes-web-service:1.0
+  - docker push osrgroup/web-service-example-project:1.0

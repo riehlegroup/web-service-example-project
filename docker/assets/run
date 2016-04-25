@@ -19,6 +19,9 @@ set -ue
 
 # setuser: Never run as root!
 # authbind: Allows non-root processes to bind to privileged ports (80)
+# --path: Make the web application available under a specific URL path
+#   The $CONTEXT_PATH environment variable has to be specific when starting a
+#   container (e.g. docker run ... -e CONTEXT_PATH=/ ... <image>)
 
 exec /sbin/setuser www-data \
   authbind --deep \

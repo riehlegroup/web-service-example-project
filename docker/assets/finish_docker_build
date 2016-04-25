@@ -17,11 +17,7 @@
 #
 set -ue
 
-# Tell authbind that port 80 is always OK
-touch /etc/authbind/byport/80
-chmod 777 /etc/authbind/byport/80
-
-# Install nginx service run script
+# Install service run script
 mkdir -p /etc/service/web-service
 cp /web-service-assets/run /etc/service/web-service/run
 chmod +x /etc/service/web-service/run

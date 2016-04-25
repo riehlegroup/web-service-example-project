@@ -19,10 +19,16 @@ set -ue
 
 # This script is always executed in the **root** of your repository
 
+# Build the war file
 ./gradlew clean war
 
+# Copy war file to docker/assets directory
 echo
 echo "Copying final artifact to docker assets directory"
 rm -rf ./docker/assets/web-service.war
 mkdir -p ./docker/assets
 cp -v ./build/libs/*.war ./docker/assets/web-service.war
+
+# Build docker image
+# --pull: Make sure that the newest version of the base image is always pulled
+docker build --pull -t osrgroup/web-service-example-project:1.0 docker/
