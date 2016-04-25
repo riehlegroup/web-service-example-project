@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Copyright 2016 The Open Source Research Group,
 #                University of Erlangen-Nürnberg
